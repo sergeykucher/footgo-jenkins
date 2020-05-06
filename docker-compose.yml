@@ -1,0 +1,20 @@
+version: '2'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+    - ./mysql:/var/lib/mysql:rw
+    environment:
+    - MYSQL_ROOT_PASSWORD=pwd
+    - MYSQL_DATABASE=footgo
+
+  app:
+    build: .
+    working_dir: /footgo
+    ports:
+    - 8080:8080
+    links:
+    - db:database
+    depends_on:
+    - "db"
+    command: ./wait-for.sh database:3306 -t 60 -- java -jar ./target/ROOT.jar
