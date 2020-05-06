@@ -7,7 +7,7 @@
 	<artifactId>ROOT</artifactId>
 	<!--<version>0.0.1-SNAPSHOT</version>-->
 	<packaging>jar</packaging>
-	<name>FootGo League</name>
+	<name>FootGo League ver 1.0</name>
 	<description>FootGo soccer league site</description>
 
 	<parent>
