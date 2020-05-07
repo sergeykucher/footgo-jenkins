@@ -17,4 +17,4 @@ services:
     - db:database
     depends_on:
     - "db"
-    command: ./wait-for.sh database:33060 -t 60 -- java -jar ./target/ROOT.jar
+    command: ./wait-for.sh database:3307 -t 60 -- java -jar ./target/ROOT.jar
