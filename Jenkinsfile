@@ -30,10 +30,8 @@ def execute(command) {
 }
 
 def build_app() {
-    echo 'Stopping app...'
-    execute('docker-compose stop app')
-    echo 'Deleting stopped app...'
-    execute('docker-compose rm -f')
+    echo 'Stopping and removind...'
+    execute('docker-compose down')
     echo 'Buldind...'
     execute('docker-compose build')
 }
