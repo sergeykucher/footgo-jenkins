@@ -9,25 +9,36 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Buldind...'
-                execute('docker-compose build')
+                build_app()
             }
         }    
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
-                execute('docker-compose up -d')
+                deploy_app()
             }
         }
     }
 }
 
 def execute(command) {
-    env.UNIX = isUnix()
-    if (Boolean.valueOf(env.UNIX)) {
+    if (isUnix()) {
         sh command
     }
     else {
         bat command
     }
+}
+
+def build_app() {
+    echo 'Stopping app...'
+    execute('docker-compose stop app')
+    echo 'Deleting stopped app...'
+    execute('docker-compose rm -f')
+    echo 'Buldind...'
+    execute('docker-compose build')
+}
+
+def deploy_app() {
+    echo 'Deploying...'
+    execute('docker-compose up -d')
 }
